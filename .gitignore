@@ -1,0 +1,9 @@
+/*
+!/.gitignore
+!/.tmux.conf
+!/.vimrc
+!/.bashrc
+
+!/.config
+/.config/*
+!/.config/awesome
