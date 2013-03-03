@@ -4,8 +4,11 @@
 
 !/.gitignore
 !/.tmux.conf
-!/.vimrc
 !/.bashrc
+
+!/.vim
+/.vim/*
+!/.vim/rc.d
 
 !/.config
 /.config/*
