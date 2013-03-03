@@ -48,6 +48,20 @@ editor_cmd = terminal .. " -e " .. editor
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
+-- Power menu helper
+-- http://awesome.naquadah.org/wiki/Autostart_with_consolekit
+
+local upower = [[dbus-send --print-reply \
+--system \
+--dest=org.freedesktop.UPower \
+/org/freedesktop/UPower \
+org.freedesktop.UPower.]]
+local consolekit = [[dbus-send --print-reply \
+--system \
+--dest="org.freedesktop.ConsoleKit" \
+/org/freedesktop/ConsoleKit/Manager \
+org.freedesktop.ConsoleKit.Manager.]]
+
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
@@ -84,7 +98,15 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
+mypowermenu = {
+   { "Suspend", function() awful.util.spawn(upower.."Suspend") end },
+   { "Hibernate", function () awful.util.spawn(upower.."Hibernate") end },
+   { "Restart", consolekit.."Restart" },
+   { "Shutdown", consolekit.."Stop" }
+}
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "power", mypowermenu },
                                     { "open terminal", terminal }
                                   }
                         })
