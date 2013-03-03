@@ -10,6 +10,12 @@ if [ -x /usr/bin/gnome-keyring-daemon ]; then
 	export GNOME_KEYRING_PID
 fi
 
+
+
+if [ -x /usr/libexec/polkit-gnome-authentication-agent-1 ]; then
+	/usr/libexec/polkit-gnome-authentication-agent-1 &
+fi
+
 # Start NetworkManager Applet
 if [ `pgrep -xc NetworkManager` -a -x /usr/bin/nm-applet ]; then
 	nm-applet&
